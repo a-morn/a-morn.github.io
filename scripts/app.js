@@ -20,5 +20,5 @@ function onContractingClick() {
 function onInvestmentsClick() {
 	document
 		.querySelector('section')
-		.innerHTML = 'www.inswallet.se';
+		.innerHTML = 'To be announced.';
 }
