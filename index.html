@@ -2,15 +2,31 @@
 <html>
 	<head>
 		<title>Mörner Industries</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
 		<link rel="stylesheet" href="assets/app.css">
+		<link href="https://fonts.googleapis.com/css?family=Overpass+Mono:600" rel="stylesheet">
 	</head>
-	<body>
-		<div class="container">
+	<body ontouchstart="onInitialClick(event)" onmousedown="onInitialClick(event)">
+		<header>
 			<img src="assets/logo.svg">
-		</div>
+		</header>
+		<nav>
+			<ul>
+				<li onclick="onContractingClick()">
+					Contracting
+				</li>
+				<li onclick="onInvestmentsClick()">
+					Investments
+				</li>
+			</ul>
+		</nav>
+		<section>
+		</section>
+		<footer>
+			© 2017 Mörner Industries
+		</footer>
 		<script src="scripts/app.js"></script>
 	</body>
 </html>
