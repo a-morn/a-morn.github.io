@@ -7,20 +7,43 @@ body, ul {
 	padding: 0;
 }
 
+/* Flex fallback */
 body {
-	height: 100vh;
-	max-height: 100%;
-	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
 
-body > * {
+body {
+	height: 100vh;
+	max-height: 100%;
+	width: 100%;
+	display: grid;
+}
+
+header {
+	grid-area: header;
+	padding: 30px;
+}
+
+nav {
+	padding: 30px;
+}
+
+footer {
+	grid-area: footer;
+	padding: 10px 30px;
+	align-self: end;
+}
+
+section {
+	grid-area:content;
 	padding: 30px;
 }
 
 body:not(.initialized) {
-	justify-content: center;
+	grid-template-areas: "header";
+	grid-template-rows: 100vh;
+	grid-template-columns: 100vw;
 	align-items: center;
 }
 
@@ -28,30 +51,33 @@ body.initialized {
 	animation: fade-out-in 1.5s linear;
 }
 
-body:not(.initialized) > *:not(header) {
-	display: none;
+/* Flex fallback */
+body:not(.initialized) {
+	justify-content: center;
+	align-items: center;
 }
 
-body.initialized > header {
-	width: calc(100vw - 60px);
+body:not(.initialized) > *:not(header) {
+	display: none;
 }
 
 nav {
 	background: #2B2B37;
 	color: #FFF;
-	width: calc(100vw - 60px);
+}
+
+/* Flex fallback */
+body > section {
+	flex-grow: 1;
 }
 
 body > section {
 	background: #878796;
-	flex-grow: 1;
-	width: calc(100vw - 60px);
 }
 
 
 nav > ul {
 	list-style: none;
-	font-size: 18px;
 }
 
 nav > ul > li {
@@ -61,30 +87,75 @@ nav > ul > li {
 footer {
 	background: #2B2B37;
 	color: #878796;
+	/* Flex fallback */
 	width: calc(100vw - 60px);
 }
 
 @media (orientation: landscape) {
+	body {
+		grid-template-columns: 160px auto;
+		grid-template-areas:
+		"header content"
+		"nav content"
+		"footer footer";
+		grid-template-rows: minmax(100px, 200px) auto 45px;
+	}
+
+	body:not(.initialized) > header {
+		justify-self: center;
+	}
+
 	body:not(.initialized) > header > img {
 		height: 70vh;
 	}
+
 	body.initialized > header > img {
-		height: 20vw;
+		width: 15vw;
+		max-height: 140px;
+		max-width: 100px;
+	}
+
+	nav > ul {
+	}
+	
+	nav > ul > li:nth-child(1) {
+		font-size: 12px;
+		letter-spacing: 1.5px;
+	}
+
+	nav > ul > li:nth-child(2) {
+		font-size: 13px;
+		letter-spacing: 4px;
 	}
 }
 
 @media (orientation: portrait) {
+	body {
+		grid-template-columns: 100vw;
+		grid-template-areas:
+		"header"
+		"nav"
+		"content"
+		"footer";
+		grid-template-rows: 160px 15% auto 45px;
+	}
 	body:not(.initialized) > header > img {
 		width: 50vw;
 	}
 	body.initialized > header > img {
-		width: 30vw;
+		height: 100px;
 	}
-	nav > ul {
-		font-size: 4vw;
+	nav > ul > li:nth-child(1) {
+		font-size: 10px;
+	}
+	nav > ul > li:nth-child(2) {
+		font-size: 13px;
 	}
 	header, nav, footer {
 		text-align: center;
+	}
+	section {
+		overflow-wrap: break-word;
 	}
 }
 
