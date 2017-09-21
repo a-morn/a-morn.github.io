@@ -21,7 +21,7 @@
    inkscape:export-ydpi="327">
 
 	<style type="text/css">
-		#g5337, #g5329, #g5330 {
+		#g5337 {
 			animation: smoke-float 6s ease-out infinite;
 		}
 
@@ -30,11 +30,11 @@
 		}
 
 		#g5329 {
-			animation-delay: 2s;
+			animation: smoke-float 6s ease-out 2s infinite, fade-in 2s forwards;
 		}
 
 		#g5330 {
-			animation-delay: 4s;
+			animation: smoke-float 6s ease-out 4s infinite, fade-in 4s forwards;
 		}
 
 		@keyframes smoke-float {
@@ -49,6 +49,19 @@
 				transform: scale(2) translateX(-40px) translateY(-15px);
 				opacity: 0;
 				font-size: 38px;
+			}
+		}
+
+		@keyframes fade-in {
+			0% {
+				opacity: 0;
+			}
+
+			99% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
 			}
 		}
 	</style>
