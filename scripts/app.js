@@ -1,13 +1,42 @@
+/* Routes */
+const CONTRACTING = 'contracting';
+const HOLDINGS = 'holdings';
+const HOME = 'home';
+
+/* Content */
+const TEXTS = {
+	[CONTRACTING]: 'Contact: albin.morner@gmail.com',
+	[HOLDINGS]: 'To be announced.',
+	[HOME]: 'Evil multinational conglomerate. Builds software. Mostly web stuff.'
+};
+
+/* State */
 let initialized = false;
 let currentPage;
 
+/* Click handlers */
 function onInitialClick(e) {
 	if (!initialized) {
 		history.pushState({ initialized: false }, null, null);
+
+		updateStateAndRoute(HOME);
 		onInitialize();
 	}
 }
 
+function onHeaderClick() {
+		updateStateAndRoute(HOME);
+}
+
+function onContractingClick() {
+		updateStateAndRoute(CONTRACTING);
+}
+
+function onHoldingsClick() {
+		updateStateAndRoute(HOLDINGS);
+}
+
+/* Logic */
 function onInitialize() {
 		initialized = true;
 		document
@@ -16,34 +45,25 @@ function onInitialize() {
 			.add('initialized');
 }
 
-function onContractingClick() {
-	if (currentPage !== 'contracting') {
-		currentPage = 'contracting';
-		history.pushState({ initialized: true, currentPage }, null, null);
+function updatePushState(route) {
+	if (currentPage !== route) {
+			currentPage = route;
+			history.pushState({ initialized: true, currentPage }, null, null);
 	}
-	showContracting();
 }
 
-function showContracting() {
+function showRoute(route) {
 	document
 		.querySelector('section')
-		.innerHTML = 'Contact: albin.morner@gmail.com';
+		.innerHTML = TEXTS[route];
 }
 
-function onHoldingsClick() {
-	if (currentPage !== 'holdings') {
-		currentPage = 'holdings';
-		history.pushState({ initialized: true, currentPage }, null, null);
-	}
-	showHoldings();
+function updateStateAndRoute(route) {
+		updatePushState(route);
+		showRoute(route);
 }
 
-function showHoldings() {
-	document
-		.querySelector('section')
-		.innerHTML = 'To be announced.';
-}
-
+/* Popstate */
 window.addEventListener('popstate', ({ state }) => {
 	if (state.initialized === true) {
 		onInitialize();
@@ -54,9 +74,6 @@ window.addEventListener('popstate', ({ state }) => {
 			.classList
 			.remove('initialized');
 	}
-	if (state.currentPage === 'holdings') {
-		showHoldings();
-	} else if (state.currentPage === 'contracting') {
-		showContracting();
-	}
+	
+	showRoute(state.currentPage);
 });
