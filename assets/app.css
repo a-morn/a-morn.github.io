@@ -98,7 +98,7 @@ footer {
 		"header content"
 		"nav content"
 		"footer footer";
-		grid-template-rows: minmax(100px, 200px) auto 45px;
+		grid-template-rows: minmax(100px, 200px) auto 40px;
 	}
 
 	body:not(.initialized) > header {
