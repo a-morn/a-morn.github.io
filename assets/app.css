@@ -7,8 +7,8 @@ body, ul {
 	padding: 0;
 }
 
-/* Flex fallback */
 body {
+	/* Flex fallback for grid */
 	display: flex;
 	flex-direction: column;
 }
@@ -101,6 +101,10 @@ footer {
 		grid-template-rows: minmax(100px, 200px) auto 40px;
 	}
 
+	footer {
+		text-align: right;
+	}
+
 	body:not(.initialized) > header {
 		justify-self: center;
 	}
@@ -137,7 +141,7 @@ footer {
 		"nav"
 		"content"
 		"footer";
-		grid-template-rows: 160px 15% auto 45px;
+		grid-template-rows: 160px 15% auto 40px;
 	}
 	body:not(.initialized) > header > img {
 		width: 50vw;
