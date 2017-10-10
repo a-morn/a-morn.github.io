@@ -7,7 +7,7 @@ const HOME = 'home';
 const TEXTS = {
 	[CONTRACTING]: 'Contact: albin.morner@gmail.com',
 	[HOLDINGS]: 'To be announced.',
-	[HOME]: 'Evil multinational conglomerate. Builds software. Mostly web stuff.'
+	[HOME]: 'Evil multinational conglomerate. Cuts down rainforests, pollutes lakes, etc.'
 };
 
 /* State */
